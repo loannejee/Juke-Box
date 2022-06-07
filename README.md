@@ -3,8 +3,12 @@
 ## :wrench: Technologies & Tools
 
 ![React](https://img.shields.io/badge/Tool-React-900C3F?style=flat&logo=React)
-![Redux](https://img.shields.io/badge/Tool-Redux-900C3F?style=flat&logo=Redux)
+![Webpack](https://img.shields.io/badge/Tool-Webpack-900C3F?style=flat&logo=Webpack)
 ![Node.js](https://img.shields.io/badge/Tool-Node.js-900C3F?style=flat&logo=Node.js)
+![Express.js](https://img.shields.io/badge/Tool-Express.js-900C3F?style=flat&logo=Express.js)
+![Sequelize](https://img.shields.io/badge/Tool-Sequelize-900C3F?style=flat&logo=Sequelize)
+![PostgreSQL](https://img.shields.io/badge/Tool-PostgreSQL-900C3F?style=flat&logo=PostgreSQL)
+![HeidiSQL](https://img.shields.io/badge/Tool-HeidiSQL-900C3F?style=flat&logo=HeidiSQL)
 ![Javascript](https://img.shields.io/badge/Code-Javascript-900C3F?style=flat&logo=Javascript)
 ![VisualStudioCode](https://img.shields.io/badge/Tool-VS%20Code-900C3F?style=flat&logo=VisualStudioCode)
 
