@@ -15,7 +15,7 @@ Project Deployment Link:
 ![VisualStudioCode](https://img.shields.io/badge/Tool-VS%20Code-900C3F?style=flat&logo=VisualStudioCode)
 ![Heroku](https://img.shields.io/badge/Deployment-Heroku-900C3F?style=flat&logo=Heroku)
 
-Boilerplate from Fullstack Academy
+The Boilerplate and setting up Express.js for the server side was prepared by Fullstack Academy.
 
 ## Setup
 
