@@ -1,4 +1,6 @@
-# Juke
+# Juke Box
+
+Project Deployment Link:
 
 ## :wrench: Technologies & Tools
 
@@ -11,14 +13,15 @@
 ![HeidiSQL](https://img.shields.io/badge/Tool-HeidiSQL-900C3F?style=flat&logo=HeidiSQL)
 ![Javascript](https://img.shields.io/badge/Code-Javascript-900C3F?style=flat&logo=Javascript)
 ![VisualStudioCode](https://img.shields.io/badge/Tool-VS%20Code-900C3F?style=flat&logo=VisualStudioCode)
+![Heroku](https://img.shields.io/badge/Deployment-Heroku-900C3F?style=flat&logo=Heroku)
+
 
 ## Setup
 
 ### MacOS/Linux
 
 * `npm install`
-* `npm start`
-Open http://localhost:8080 to view it in your browser.
+* `npm start` Open http://localhost:8080 to view it in your browser.
 * Open another terminal window; from there, `npm run seed` to seed the database
 
 ### Windows
