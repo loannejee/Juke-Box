@@ -67,6 +67,7 @@ td {
 
 #albums {
   margin: 2em;
+  cursor: pointer;
 }
 
 #logo {
@@ -135,6 +136,7 @@ td {
 /* classes */
 .album {
   margin: 1em;
+  cursor: pointer;
 }
 
 .album img {
@@ -142,10 +144,12 @@ td {
   width: 200px;
   transition: box-shadow 0.5s ease;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .album img:hover {
   box-shadow: 2px 2px 2px #5a5a5a;
+  cursor: pointer;
 }
 
 .center {

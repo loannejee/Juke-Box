@@ -2,6 +2,7 @@
 const router = require('express').Router();
 const Album = require('../db/models/Album');
 const Artist = require('../db/models/Artist');
+const Song = require('../db/models/Song');
 
 module.exports = router;
 
@@ -18,7 +19,19 @@ router.get('/', async (req, res, next) => {
 // GET /api/albums/:albumId
 router.get('/:id', async (req, res, next) => {
     try {
-        const album = await Album.findByPk(req.params.id, { include: Artist })
+        // const album = await Album.findByPk(req.params.id, { include: { all: true }})
+        const album = await Album.findByPk(req.params.id, {
+            include: [
+              {
+                model: Artist,
+                required: true
+              },
+              {
+                model: Song,
+                required: true
+              },
+            ]
+          })
         res.json(album);
     } catch (error) {
         next(error);

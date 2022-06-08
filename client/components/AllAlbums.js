@@ -6,20 +6,23 @@ import SingleAlbum from './SingleAlbum'
 // functional component
 function AllAlbums(props) {
     const listOfAlbums = props.listOfAlbums
+    const selectAlbum = props.selectAlbum
 
     return (
         <div className='container'>
-
-            {
-                listOfAlbums.map((album) => {
-                    return (
-                        <SingleAlbum album={album} key={album.id}/>
-                    )
-                })
-            }
-
-
-
+            <div id='albums' className='row wrap'>
+                {
+                    listOfAlbums.map((album) => {
+                        return (
+                            <SingleAlbum 
+                            album={album} 
+                            key={album.id} 
+                            selectAlbum={selectAlbum}
+                            />
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }
