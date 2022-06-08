@@ -1,4 +1,5 @@
 // Milestone 3: Render All Albums
+// Milestone 4: Render Single Album View
 
 import React from 'react'
 import Sidebar from './components/Sidebar';
@@ -19,7 +20,9 @@ export default class Main extends React.Component {
       listOfAlbums: [],
       selectedAlbum: {}
     };
+    // establish context to "this"
     this.selectAlbum = this.selectAlbum.bind(this);
+    this.deselectAlbum = this.deselectAlbum.bind(this);
   }
 
   async componentDidMount() {
@@ -33,31 +36,38 @@ export default class Main extends React.Component {
   }
 
   selectAlbum (albumId) {
-    // Need to use .then to synchronously set the new state after making request:
     axios.get(`/api/albums/${albumId}`)
       .then(res => res.data)
-      .then(album => this.setState({
-        selectedAlbum: album
-      }));
+      .then(album => // Using arrow functions is important here! Otherwise, our this context would be undefined!
+        this.setState({ selectedAlbum: album })
+      );
   }
 
-  // deselectAlbum() {
-  //   this.setState({
-  //     ...this.state,
-  //     selectedAlbum: {}
-  //   })
+  // NTS: Another way to trigger update state for selectedAlbum is by using if statement:
+  // async selectAlbum(albumId) {
+  //   const { data } = await axios.get(`/api/albums/${albumId}`);
+  //   if (data) {
+  //     this.setState({ ...this.state, selectedAlbum: data })
+  //   }
   // }
+
+  deselectAlbum() {
+    this.setState({
+      ...this.state,
+      selectedAlbum: {}
+    })
+  }
 
   render() {
     return (
       <div id='main' className='row container'>
-        <Sidebar />
+        <Sidebar deselectAlbum={this.deselectAlbum}/>
         {
           this.state.selectedAlbum.id
-          ? 
-          <SingleAlbumView album={this.state.selectedAlbum}/> 
-          :
-          <AllAlbums listOfAlbums={this.state.listOfAlbums} selectAlbum={this.selectAlbum} />
+            ?
+            <SingleAlbumView selectedAlbum={this.state.selectedAlbum} />
+            :
+            <AllAlbums listOfAlbums={this.state.listOfAlbums} selectAlbum={this.selectAlbum} />
         }
         <Player />
       </div>

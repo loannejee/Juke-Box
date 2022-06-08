@@ -4,13 +4,14 @@ import React from 'react'
 
 function SingleAlbum(props) {
     const selectAlbum = props.selectAlbum
+    const album = props.album;
 
     return (
         <div className='album'>
-            <a onClick={() => selectAlbum(props.album.id)}>
-                <img src={`${props.album.artworkUrl}`} />
-                <p>{`${props.album.name}`}</p>
-                <small>{`${props.album.artist.name}`}</small>
+            <a onClick={() => selectAlbum(album.id)}>
+                <img src={`${album.artworkUrl}`} />
+                <p>{`${album.name}`}</p>
+                <small>{`${album.artist.name}`}</small>
             </a>
         </div>
     )
