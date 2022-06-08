@@ -1,25 +1,24 @@
-import React from 'react'
+// Milestone 3: Render All Albums
 
-function AllAlbums() {
+import React from 'react'
+import SingleAlbum from './SingleAlbum'
+
+// functional component
+function AllAlbums(props) {
+    const listOfAlbums = props.listOfAlbums
+
     return (
         <div className='container'>
 
-            <div id='albums' className='row wrap'>
-                <div className='album'>
-                    <a>
-                        <img src='default-album.jpg' />
-                        <p>ALBUM 1</p>
-                        <small>Artist Name</small>
-                    </a>
-                </div>
-                <div className='album'>
-                    <a>
-                        <img src='default-album.jpg' />
-                        <p>ALBUM 2</p>
-                        <small>Artist Name</small>
-                    </a>
-                </div>
-            </div>
+            {
+                listOfAlbums.map((album) => {
+                    return (
+                        <SingleAlbum album={album} key={album.id}/>
+                    )
+                })
+            }
+
+
 
         </div>
     )

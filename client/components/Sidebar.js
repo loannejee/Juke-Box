@@ -1,3 +1,5 @@
+// Milestone 3: Render All Albums
+
 import React from 'react';
 
 function Sidebar() {
