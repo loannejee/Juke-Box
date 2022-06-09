@@ -28,7 +28,8 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       listOfAlbums: [],
-      selectedAlbum: {}
+      selectedAlbum: {},
+      currentSong: {},
     };
     // establish context to "this" for using this function later...
     this.selectAlbum = this.selectAlbum.bind(this);
@@ -70,8 +71,12 @@ export default class Main extends React.Component {
     })
   }
 
-  start() {
-    audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3';
+  start(song) {
+    audio.src = song.audioUrl;
+    this.setState({
+      ...this.state,
+      currentSong: song,
+    })
     audio.load();
     audio.play();
   }
@@ -86,6 +91,7 @@ export default class Main extends React.Component {
             <SingleAlbumView
               selectedAlbum={this.state.selectedAlbum}
               start={this.start}
+              currentSong={this.state.currentSong}
             />
             :
             <AllAlbums

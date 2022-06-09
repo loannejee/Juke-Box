@@ -7,7 +7,8 @@ function SingleAlbumView(props) {
   const selectedAlbum = props.selectedAlbum;
   // For mapping
   const songs = selectedAlbum.songs;
-  const start = props.start
+  const start = props.start;
+  const currentSong = props.currentSong;
 
   return (
     <div className='container'>
@@ -37,6 +38,7 @@ function SingleAlbumView(props) {
                     selectedAlbum={selectedAlbum}
                     key={song.id}
                     start={start}
+                    currentSong={currentSong}
                   />
                 )
               })
