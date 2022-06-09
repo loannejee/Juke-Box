@@ -30,12 +30,15 @@ export default class Main extends React.Component {
       listOfAlbums: [],
       selectedAlbum: {},
       currentSong: {},
+      isPlaying: false,
     };
     // establish context to "this" for using this function later...
     this.selectAlbum = this.selectAlbum.bind(this);
     this.deselectAlbum = this.deselectAlbum.bind(this);
     // for the music player
     this.start = this.start.bind(this);
+    this.play = this.play.bind(this);
+    this.pause = this.pause.bind(this);
   }
 
   async componentDidMount() {
@@ -73,12 +76,27 @@ export default class Main extends React.Component {
 
   start(song) {
     audio.src = song.audioUrl;
-    this.setState({
-      ...this.state,
-      currentSong: song,
-    })
     audio.load();
+    audio.play()
+      .then(() => this.setState({
+        currentSong: song,
+        isPlaying: true,
+      }))
+
+
+    console.log(this.state)
+  }
+
+  play() {
     audio.play();
+    this.setState({ isPlaying: true });
+    console.log(this.state.isPlaying)
+  }
+
+  pause() {
+    audio.pause();
+    this.setState({ isPlaying: false });
+    console.log(this.state.isPlaying)
   }
 
   render() {
@@ -99,7 +117,20 @@ export default class Main extends React.Component {
               selectAlbum={this.selectAlbum}
             />
         }
-        <Player />
+        {
+          this.state.currentSong.id
+            ?
+            <Player
+              currentSong={this.state.currentSong}
+              isPlaying={this.state.isPlaying}
+              start={this.start}
+              play={this.play}
+              pause={this.pause}
+            />
+            :
+            <></>
+        }
+
       </div>
     )
   }
