@@ -3,19 +3,17 @@
 import React from 'react'
 
 function Player(props) {
-  const currentSong = props.currentSong;
   const isPlaying = props.isPlaying;
   const play = props.play;
   const pause = props.pause;
+  const next = props.next;
+  const previous = props.previous;
+
   return (
     <div id='player-container'>
           <div id='player-controls'>
             <div className='row center'>
-              <i className='fa fa-step-backward'></i>
-              {/* onClick
-              1. turn to play button
-              2. audio.stops
-              */}
+              <i className='fa fa-step-backward' onClick={previous}></i>
               {
                 isPlaying
                 ?
@@ -24,7 +22,7 @@ function Player(props) {
                 <i className='fa fa-play-circle' onClick={play}></i>
               }
               
-              <i className='fa fa-step-forward'></i>
+              <i className='fa fa-step-forward' onClick={next}></i>
             </div>
           </div>
         </div>

@@ -20,7 +20,8 @@ const audio = document.createElement('audio');
 // Notes:
 // 1. Not using redux because this app will NOT have medium-large size codebase
 // 2. A good rule of thumb is to start your state "higher up the component tree", and 
-// then move it down as appropriate. We will start state in Main:
+// then move it down as appropriate. We will start state in Main.js
+// 3. JukeAudio.js shall be the highest component and render Main.js
 
 
 export default class Main extends React.Component {
@@ -30,6 +31,7 @@ export default class Main extends React.Component {
       listOfAlbums: [],
       selectedAlbum: {},
       currentSong: {},
+      currentSongList: [],
       isPlaying: false,
     };
     // establish context to "this" for using this function later...
@@ -39,6 +41,8 @@ export default class Main extends React.Component {
     this.start = this.start.bind(this);
     this.play = this.play.bind(this);
     this.pause = this.pause.bind(this);
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
   }
 
   async componentDidMount() {
@@ -49,13 +53,18 @@ export default class Main extends React.Component {
       ...this.state,
       listOfAlbums: data,
     });
+
   }
 
   selectAlbum(albumId) {
     axios.get(`/api/albums/${albumId}`)
       .then(res => res.data)
       .then(album => // Using arrow functions is important here! Otherwise, our this context would be undefined!
-        this.setState({ selectedAlbum: album })
+        this.setState({
+          ...this.state,
+          selectedAlbum: album,
+          currentSongList: album.songs
+        })
       );
   }
 
@@ -82,21 +91,70 @@ export default class Main extends React.Component {
         currentSong: song,
         isPlaying: true,
       }))
-
-
     console.log(this.state)
   }
 
   play() {
     audio.play();
     this.setState({ isPlaying: true });
-    console.log(this.state.isPlaying)
   }
 
   pause() {
     audio.pause();
     this.setState({ isPlaying: false });
-    console.log(this.state.isPlaying)
+    console.log(this.state)
+  }
+
+  next() {
+    const firstSong = this.state.currentSongList[0];
+    const currentSongList = this.state.currentSongList;
+    let nextSongId
+
+    // Loop through currentSongList to find id of the currentSong playing
+    // and the id of the nextSong in line
+    for (let i = 0; i < currentSongList.length; i++) {
+      if ((this.state.currentSong.id === currentSongList[i].id) && currentSongList[i + 1]) {
+        nextSongId = currentSongList[i + 1].id
+      } else {
+        nextSongId = firstSong.id
+      }
+    }
+
+    // Find an object in an array by one of its properties
+    function isNextSong(song) {
+      return song.id === nextSongId
+    }
+
+    // Determine what is the nextSong:
+    const nextSong = currentSongList.find(isNextSong);
+
+    this.start(nextSong)
+  }
+
+  previous() {
+    const lastSong = this.state.currentSongList[this.state.currentSongList.length - 1];
+    const currentSongList = this.state.currentSongList;
+    let prevSongId
+
+    // Loop through currentSongList to find id of the currentSong playing
+    // and the id of the nextSong in line
+    for (let i = 0; i < currentSongList.length; i++) {
+      if ((this.state.currentSong.id === currentSongList[i].id) && currentSongList[i - 1]) {
+        prevSongId = currentSongList[i - 1].id
+      } else {
+        prevSongId = lastSong.id
+      }
+    }
+
+    // Find an object in an array by one of its properties
+    function isPreviousSong(song) {
+      return song.id === prevSongId
+    }
+
+    // Determine what is the nextSong
+    const previousSong = currentSongList.find(isPreviousSong);
+
+    this.start(previousSong)
   }
 
   render() {
@@ -126,6 +184,8 @@ export default class Main extends React.Component {
               start={this.start}
               play={this.play}
               pause={this.pause}
+              next={this.next}
+              previous={this.previous}
             />
             :
             <></>
