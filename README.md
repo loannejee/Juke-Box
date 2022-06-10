@@ -1,6 +1,6 @@
 # Juke Box
 
-Project Deployment Link:
+Project Deployment Link: https://juke-box-jl.herokuapp.com/
 
 ## :wrench: Technologies & Tools
 

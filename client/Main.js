@@ -136,8 +136,6 @@ export default class Main extends React.Component {
     const currentSongList = this.state.currentSongList;
     let prevSongId
 
-    // Loop through currentSongList to find id of the currentSong playing
-    // and the id of the nextSong in line
     for (let i = 0; i < currentSongList.length; i++) {
       if ((this.state.currentSong.id === currentSongList[i].id) && currentSongList[i - 1]) {
         prevSongId = currentSongList[i - 1].id
@@ -146,12 +144,10 @@ export default class Main extends React.Component {
       }
     }
 
-    // Find an object in an array by one of its properties
     function isPreviousSong(song) {
       return song.id === prevSongId
     }
 
-    // Determine what is the nextSong
     const previousSong = currentSongList.find(isPreviousSong);
 
     this.start(previousSong)
