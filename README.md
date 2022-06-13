@@ -30,4 +30,5 @@ The Boilerplate and setting up Express.js for the server side was prepared by Fu
 * Open another terminal window; from there, `npm run start-server` to start the server process
 * Open another terminal window; from there, `npm run seed` to seed the database
 
+## :computer: Demo
 

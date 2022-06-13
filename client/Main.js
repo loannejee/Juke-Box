@@ -62,6 +62,13 @@ export default class Main extends React.Component {
     });
 
     audio.addEventListener('timeupdate', () => {
+      let durationMinutes = '0';
+      let durationSeconds = '00';
+
+      durationMinutes = Math.floor(audio.duration / 60);
+      durationSeconds = Math.floor(audio.duration % 60);
+      const durationTime = durationMinutes + ':' + durationSeconds;
+
       // audio.currentTime return seconds
       // minutes elapsed from currentTime
       const currentMinutes = Math.floor(audio.currentTime / 60);
@@ -69,10 +76,6 @@ export default class Main extends React.Component {
       let currentSeconds = Math.floor(audio.currentTime % 60);
       currentSeconds = currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds
       const currentTime = currentMinutes + ':' + currentSeconds;
-
-      const durationMinutes = Math.floor(audio.duration / 60);
-      const durationSeconds = Math.floor(audio.duration % 60);
-      const durationTime = durationMinutes + ':' + durationSeconds;
 
       this.setState({
         currentTime: currentTime,
@@ -210,8 +213,8 @@ export default class Main extends React.Component {
             />
         }
         {
-          // this.state.currentSong.id
-          //   ?
+          this.state.currentSong.id
+            ?
           <Player
             currentSong={this.state.currentSong}
             isPlaying={this.state.isPlaying}
@@ -224,8 +227,8 @@ export default class Main extends React.Component {
             next={this.next}
             previous={this.previous}
           />
-          // :
-          // <></>
+          :
+          <></>
         }
 
       </div>
