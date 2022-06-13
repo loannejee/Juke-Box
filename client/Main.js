@@ -114,10 +114,13 @@ export default class Main extends React.Component {
     // and the id of the nextSong in line
     for (let i = 0; i < currentSongList.length; i++) {
       if ((this.state.currentSong.id === currentSongList[i].id) && currentSongList[i + 1]) {
-        nextSongId = currentSongList[i + 1].id
-      } else {
-        nextSongId = firstSong.id
+        nextSongId = currentSongList[i + 1].id;
       }
+    }
+
+    // If the nextSong doesn't exist, then make the nextSong the first song in the album
+    if (!nextSongId) {
+      nextSongId = firstSong.id
     }
 
     // Find an object in an array by one of its properties
@@ -129,7 +132,8 @@ export default class Main extends React.Component {
     const nextSong = currentSongList.find(isNextSong);
 
     this.start(nextSong)
-  }
+  };
+
 
   previous() {
     const lastSong = this.state.currentSongList[this.state.currentSongList.length - 1];
@@ -139,16 +143,18 @@ export default class Main extends React.Component {
     for (let i = 0; i < currentSongList.length; i++) {
       if ((this.state.currentSong.id === currentSongList[i].id) && currentSongList[i - 1]) {
         prevSongId = currentSongList[i - 1].id
-      } else {
-        prevSongId = lastSong.id
       }
     }
 
-    function isPreviousSong(song) {
+    if (!prevSongId) {
+      prevSongId = lastSong.id
+    }
+
+    function isPrevSong(song) {
       return song.id === prevSongId
     }
 
-    const previousSong = currentSongList.find(isPreviousSong);
+    const previousSong = currentSongList.find(isPrevSong);
 
     this.start(previousSong)
   }
