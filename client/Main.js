@@ -33,6 +33,9 @@ export default class Main extends React.Component {
       currentSong: {},
       currentSongList: [],
       isPlaying: false,
+      currentTime: '0:00',
+      durationTime: '0:00',
+      progressBar: {},
     };
     // establish context to "this" for using this function later...
     this.selectAlbum = this.selectAlbum.bind(this);
@@ -53,6 +56,35 @@ export default class Main extends React.Component {
       ...this.state,
       listOfAlbums: data,
     });
+
+    audio.addEventListener('updated', () => {
+      this.next();
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      // audio.currentTime return seconds
+      // minutes elapsed from currentTime
+      const currentMinutes = Math.floor(audio.currentTime / 60);
+      // currentTime remainder in seconds after removing minutes
+      let currentSeconds = Math.floor(audio.currentTime % 60);
+      currentSeconds = currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds
+      const currentTime = currentMinutes + ':' + currentSeconds;
+
+      const durationMinutes = Math.floor(audio.duration / 60);
+      const durationSeconds = Math.floor(audio.duration % 60);
+      const durationTime = durationMinutes + ':' + durationSeconds;
+
+      this.setState({
+        currentTime: currentTime,
+        durationTime: durationTime,
+        progressBar: {
+          min: 0,
+          max: audio.duration,
+          progress: audio.currentTime,
+        }
+      });
+    });
+
 
   }
 
@@ -178,19 +210,22 @@ export default class Main extends React.Component {
             />
         }
         {
-          this.state.currentSong.id
-            ?
-            <Player
-              currentSong={this.state.currentSong}
-              isPlaying={this.state.isPlaying}
-              start={this.start}
-              play={this.play}
-              pause={this.pause}
-              next={this.next}
-              previous={this.previous}
-            />
-            :
-            <></>
+          // this.state.currentSong.id
+          //   ?
+          <Player
+            currentSong={this.state.currentSong}
+            isPlaying={this.state.isPlaying}
+            currentTime={this.state.currentTime}
+            durationTime={this.state.durationTime}
+            progressBar={this.state.progressBar}
+            start={this.start}
+            play={this.play}
+            pause={this.pause}
+            next={this.next}
+            previous={this.previous}
+          />
+          // :
+          // <></>
         }
 
       </div>

@@ -1,7 +1,5 @@
 # Juke Box
 
-Project Deployment Link: https://juke-box-jl.herokuapp.com/
-
 ## :wrench: Technologies & Tools
 
 ![React](https://img.shields.io/badge/Tool-React-900C3F?style=flat&logo=React)

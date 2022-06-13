@@ -81,7 +81,7 @@ td {
 
 #player-container {
   position: fixed;
-  height: 56px;
+  height: 100px;
   width: 100%;
   bottom: 0;
 }
@@ -178,3 +178,28 @@ td {
   display: flex;
   flex-direction: row;
 }
+
+.progressBar {
+  display: flex;
+  align-items: center;
+}
+
+.duration {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.currentTime {
+  margin-left: 25px;
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.progressBar > input {
+  accent-color: #00aaaa;
+  width: 200px;
+  height: 11px;
+  outline: none;
+}
+
