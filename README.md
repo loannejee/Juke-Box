@@ -32,3 +32,7 @@ The Boilerplate and setting up Express.js for the server side was prepared by Fu
 
 ## :computer: Demo
 
+
+https://user-images.githubusercontent.com/95735163/173427655-7d6238d1-fc87-4219-99ea-7569e130c778.mp4
+
+
