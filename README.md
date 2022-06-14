@@ -11,7 +11,6 @@
 ![HeidiSQL](https://img.shields.io/badge/Tool-HeidiSQL-900C3F?style=flat&logo=HeidiSQL)
 ![Javascript](https://img.shields.io/badge/Code-Javascript-900C3F?style=flat&logo=Javascript)
 ![VisualStudioCode](https://img.shields.io/badge/Tool-VS%20Code-900C3F?style=flat&logo=VisualStudioCode)
-![Heroku](https://img.shields.io/badge/Deployment-Heroku-900C3F?style=flat&logo=Heroku)
 
 The Boilerplate and setting up Express.js for the server side was prepared by Fullstack Academy.
 
